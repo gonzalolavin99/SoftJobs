@@ -49,6 +49,7 @@ const userLogin = async (req, res) => {
 const getUserData = async (req, res) => {
     try {
         const authHeader = req.headers.authorization;
+        console.log('authHeader:', authHeader);
         if (!authHeader || !authHeader.startsWith("Bearer ")) {
           return res.status(401).json({ error: "Token no válido" });
         }

@@ -10,8 +10,16 @@ const Profile = () => {
 
   const getDeveloperData = () => {
     const token = window.sessionStorage.getItem('token')
-    axios.get(ENDPOINT.users, { headers: { Authorization: `Bearer ${token}` } })
-      .then(({ data: [user] }) => setDeveloper({ ...user }))
+    axios
+      .get(ENDPOINT.users, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
+      .then((response) => {
+        console.log(response.data) // Acceder a la propiedad 'data' del objeto de respuesta
+        setDeveloper(response.data)
+      })
       .catch(({ response: { data } }) => {
         console.error(data)
         window.sessionStorage.removeItem('token')
